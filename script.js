@@ -51,7 +51,6 @@ const dataMahasiswa = [
     { nim: "24051204158", nama: "Wildandy Dwi Ananda   ", dept: "Departemen Sosial dan Masyarakat" },
     { nim: "25051204135", nama: "M. Ilkliluddin Al Wafi   ", dept: "Departemen Sosial dan Masyarakat" },
     { nim: "25051204185", nama: "Rivana Adinda Putri   ", dept: "Departemen Sosial dan Masyarakat" },
-
 ];
 
 function cariData() {
@@ -63,10 +62,7 @@ function cariData() {
     const mhs = dataMahasiswa.find(m => m.nim === inputVal);
 
     if (mhs) {
-        // Tampilkan Nama di Kalimat Sambutan
         welcomeName.innerText = mhs.nama;
-
-        // Isi Data Tabel
         document.getElementById('resNim').innerText = mhs.nim;
         document.getElementById('resNama').innerText = mhs.nama;
         document.getElementById('resDept').innerText = mhs.dept;
@@ -74,43 +70,43 @@ function cariData() {
         resultWrapper.style.display = "block";
         errorMsg.style.display = "none";
 
-        // Efek Perayaan
-        launchCelebration();
+        // Fitur: Konfeti menyebar ke seluruh website
+        spreadConfetti();
     } else {
         resultWrapper.style.display = "none";
-        if (inputVal !== "") {
-            errorMsg.style.display = "block";
-        }
+        if (inputVal !== "") errorMsg.style.display = "block";
     }
 }
 
-function launchCelebration() {
-    var end = Date.now() + (3 * 1000);
+function spreadConfetti() {
+    const duration = 5 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 999 };
 
-    (function frame() {
-        confetti({
-            particleCount: 5,
-            angle: 60,
-            spread: 55,
-            origin: { x: 0 },
-            colors: ['#00D4FF', '#ffffff']
-        });
-        confetti({
-            particleCount: 5,
-            angle: 120,
-            spread: 55,
-            origin: { x: 1 },
-            colors: ['#00D4FF', '#ffffff']
-        });
+    function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
 
-        if (Date.now() < end) {
-            requestAnimationFrame(frame);
-        }
-    }());
+    const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return clearInterval(interval);
+
+        const particleCount = 50 * (timeLeft / duration);
+        
+        // Meledak dari posisi acak di layar
+        confetti(Object.assign({}, defaults, { 
+            particleCount, 
+            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+            colors: ['#00D4FF', '#ffffff', '#0047AB']
+        }));
+        confetti(Object.assign({}, defaults, { 
+            particleCount, 
+            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+            colors: ['#00D4FF', '#ffffff', '#0047AB']
+        }));
+    }, 250);
 }
 
-document.getElementById("nimInput").addEventListener("keyup", function(event) {
-    if (event.key === "Enter") {
-        cariData();
-    }
+document.getElementById("nimInput").addEventListener("keyup", (e) => {
+    if (e.key === "Enter") cariData();
 });
