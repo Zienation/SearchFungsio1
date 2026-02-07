@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Data Mahasiswa - Teknik Informatika</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="glass-card">
+            <header>
+                <h1 class="title">PORTAL DATA</h1>
+                <p class="subtitle">HIMPUNAN MAHASISWA PRODI TEKNIK INFORMATIKA</p>
+                <p class="kabinet">KABINET NOVA UNITAS</p>
+            </header>
+
+            <div class="search-section">
+                <input type="text" id="nimInput" placeholder="Masukkan NIM Anda..." autocomplete="off">
+                <button onclick="cariData()">Cari Data</button>
+            </div>
+
+            <div id="errorMessage" class="error-msg">NIM tidak ditemukan. Pastikan input sudah benar!</div>
+
+            <div id="resultWrapper" class="result-wrapper">
+                <h3 class="welcome-text">Selamat datang <span id="welcomeName"></span> di Himpunan Teknik Informatika! 🎉</h3>
+                
+                <div class="table-container">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>NIM</th>
+                                <th>NAMA LENGKAP</th>
+                                <th>DIVISI / DEPARTEMEN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="resNim"></td>
+                                <td id="resNama" class="highlight"></td>
+                                <td id="resDept"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
