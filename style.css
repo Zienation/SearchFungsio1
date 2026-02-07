@@ -7,13 +7,24 @@
 body {
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
-    /* Background Biru Informatika */
-    background: linear-gradient(135deg, #0052D4 0%, #4364F7 50%, #6FB1FC 100%);
+    /* REVISI: Gradasi Biru ke Gelap Galaksi */
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     padding: 20px;
+    overflow-x: hidden;
+}
+
+/* Efek Bintang Galaksi */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: transparent url('https://www.script-tutorials.com/demos/360/images/stars.png') repeat;
+    z-index: -1;
+    opacity: 0.5;
 }
 
 .main-container {
@@ -23,13 +34,13 @@ body {
 }
 
 .glass-card {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 40px 30px;
     border-radius: 30px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     text-align: center;
 }
 
@@ -37,8 +48,8 @@ body {
     font-size: 2.5rem;
     font-weight: 900;
     letter-spacing: 2px;
-    color: #ffffff;
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #00D4FF;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
     margin-bottom: 5px;
 }
 
@@ -56,18 +67,17 @@ input {
     flex: 1;
     padding: 16px;
     border-radius: 15px;
-    border: none;
-    background: white;
-    color: #333;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
     font-size: 1rem;
     outline: none;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 button {
     padding: 0 30px;
     border-radius: 15px;
-    background: #002147;
+    background: linear-gradient(45deg, #0047AB, #00D4FF);
     color: white;
     border: none;
     font-weight: 700;
@@ -76,9 +86,8 @@ button {
 }
 
 button:hover {
-    background: #00D4FF;
-    color: #002147;
     transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
 }
 
 /* Pesan Sambutan & Tabel */
@@ -89,7 +98,7 @@ button:hover {
 }
 
 .welcome-box {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 212, 255, 0.1);
     padding: 20px;
     border-radius: 15px;
     margin-bottom: 25px;
@@ -101,18 +110,18 @@ button:hover {
 
 .table-container {
     border-radius: 15px;
-    overflow-x: auto; /* Agar tabel tidak hancur di HP */
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow-x: auto;
+    border: 1px solid rgba(0, 212, 255, 0.3);
 }
 
 .styled-table {
     width: 100%;
     border-collapse: collapse;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.5);
     min-width: 500px;
 }
 
-.styled-table thead { background: #ffffff; color: #0052D4; }
+.styled-table thead { background: #0047AB; color: white; }
 .styled-table th, .styled-table td { padding: 18px; text-align: center; }
 .styled-table tbody tr { border-top: 1px solid rgba(255, 255, 255, 0.1); }
 
@@ -124,7 +133,6 @@ button:hover {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Media Query untuk HP */
 @media (max-width: 600px) {
     .search-section { flex-direction: column; }
     button { padding: 15px; }
